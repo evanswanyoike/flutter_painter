@@ -4,17 +4,17 @@ import 'dart:ui' as ui;
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'events/selected_object_drawable_removed_event.dart';
+
+import '../views/painters/painter.dart';
 import '../views/widgets/painter_controller_widget.dart';
 import 'actions/actions.dart';
-import 'drawables/image_drawable.dart';
-import 'events/events.dart';
 import 'drawables/background/background_drawable.dart';
-import 'drawables/object_drawable.dart';
-import 'settings/settings.dart';
-import '../views/painters/painter.dart';
-
 import 'drawables/drawable.dart';
+import 'drawables/image_drawable.dart';
+import 'drawables/object_drawable.dart';
+import 'events/events.dart';
+import 'events/selected_object_drawable_removed_event.dart';
+import 'settings/settings.dart';
 
 /// Controller used to control a [FlutterPainter] widget.
 ///
@@ -433,8 +433,12 @@ class PainterControllerValue {
   }
 
   @override
-  int get hashCode => hashValues(
-      hashList(_drawables), background, settings, selectedObjectDrawable);
+  int get hashCode => Object.hash(
+        Object.hashAll(_drawables), // Replace hashList
+        background,
+        settings,
+        selectedObjectDrawable,
+      );
 }
 
 /// Private class that is used internally to represent no
